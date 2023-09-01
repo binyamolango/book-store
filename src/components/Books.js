@@ -5,9 +5,15 @@ const Books = (props) => {
 
   return (
     <li>
-      <p>Book title :{title}</p>
+      <p>
+        Book title :
+        {title}
+      </p>
       <div>
-        <p>Author :{author}</p>
+        <p>
+          Author :
+          {author}
+        </p>
         <button type="button">Remove</button>
       </div>
     </li>

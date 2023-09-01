@@ -9,7 +9,7 @@ const BooksPage = () => {
   ];
 
   return (
-    <div className='books-display'>
+    <div className="books-display">
       <ul className="books">
         {books.map((book) => (
           <Books title={book.title} author={book.author} key={book.id} />
