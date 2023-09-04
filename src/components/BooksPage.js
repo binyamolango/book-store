@@ -1,23 +1,32 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Books from './Books';
 import Form from './Form';
 
-const BooksPage = () => {
-  const books = [
-    { title: 'Education', author: 'Ellen White', id: 1 },
-    { title: 'The Alchemist', author: 'Paul Coleho', id: 2 },
-    { title: 'The seven habits of highly effective people', author: 'Stephen R. Convey', id: 3 },
-  ];
+const mapStateToProps = (state) => ({
+  books: state.books,
+});
 
-  return (
-    <div className="books-display">
-      <ul className="books">
-        {books.map((book) => (
-          <Books title={book.title} author={book.author} key={book.id} />
-        ))}
-      </ul>
-      <Form />
-    </div>
-  );
+const BooksPage = ({ books }) => (
+  <div className="books-display">
+    <ul className="books">
+      {books.map((book) => (
+        <Books title={book.title} author={book.author} key={book.id} />
+      ))}
+    </ul>
+    <Form />
+  </div>
+);
+
+BooksPage.propTypes = {
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
 };
 
-export default BooksPage;
+export default connect(mapStateToProps)(BooksPage);
