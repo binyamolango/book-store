@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { createStore } from 'redux';
+import { configureStore } from 'redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+const store = configureStore();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
