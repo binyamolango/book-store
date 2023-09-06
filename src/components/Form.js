@@ -1,17 +1,32 @@
+import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../redux/books/booksSlice';
 
 const Form = () => {
   const dispatch = useDispatch();
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
 
-  const addClickHandler = () => {
-    dispatch(addBook({id: }));
+  const titleHandler = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const authorHandler = (e) => {
+    setAuthor(e.target.value);
+  };
+
+  const addClickHandler = (e) => {
+    e.preventDefault();
+    dispatch(addBook({
+      id: uuidv4(), title, author,
+    }));
   };
 
   return (
     <form>
-      <input type="text" placeholder="Book title" />
-      <input type="text" placeholder="Author" />
+      <input type="text" placeholder="Book title" value={title} onChange={titleHandler} />
+      <input type="text" placeholder="Author" value={author} onChange={authorHandler} />
       <button type="submit" onClick={addClickHandler}>Add Book</button>
     </form>
   );
