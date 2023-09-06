@@ -9,7 +9,13 @@ const BooksPage = () => {
     <div className="books-display">
       <ul className="books">
         {books.map((book) => (
-          <Books title={book.title} author={book.author} key={book.id} />
+          <Books
+            title={book.title}
+            author={book.author}
+            key={book.id}
+            id={book.id}
+            category={book.category}
+          />
         ))}
       </ul>
       <Form />
