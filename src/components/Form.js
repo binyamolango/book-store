@@ -5,14 +5,14 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const addClickHandler = () => {
-    dispatch(addBook());
+    dispatch(addBook({id: }));
   };
 
   return (
     <form>
       <input type="text" placeholder="Book title" />
       <input type="text" placeholder="Author" />
-      <button type="submit" onClick={addClickHandler}>ADD BOOk</button>
+      <button type="submit" onClick={addClickHandler}>Add Book</button>
     </form>
   );
 };
