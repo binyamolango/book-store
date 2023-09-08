@@ -32,7 +32,7 @@ const Form = () => {
   };
 
   const categories = [
-    'Action', 'Fiction', 'Thriller', 'Mystery', 'Adventure', 'Biography', 'Anthology', 'Other',
+    'Fiction', 'Spiritual', 'Thriller', 'Adventure', 'Biography', 'Anthology', 'Action', 'Other',
   ];
 
   return (
