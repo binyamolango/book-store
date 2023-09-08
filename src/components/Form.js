@@ -9,34 +9,43 @@ const Form = () => {
   const [author, setAuthor] = useState('');
   const [category, setCategory] = useState('');
 
-  const titleHandler = (e) => {
+  const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  const authorHandler = (e) => {
+  const handleAuthorChange = (e) => {
     setAuthor(e.target.value);
   };
 
-  const categoryHandler = (e) => {
-    setCategory(e.target.value);
-  };
-
-  const addClickHandler = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
+    const id = uuidv4();
     dispatch(addBook({
-      id: uuidv4(), title, author, category,
+      item_id: id,
+      title,
+      author,
+      category,
     }));
     setTitle('');
     setAuthor('');
     setCategory('');
   };
 
+  const categories = [
+    'Action', 'Fiction', 'Thriller', 'Mystery', 'Adventure', 'Biography', 'Anthology', 'Other',
+  ];
+
   return (
-    <form>
-      <input type="text" placeholder="Book title" value={title} onChange={titleHandler} />
-      <input type="text" placeholder="Author" value={author} onChange={authorHandler} />
-      <input type="text" placeholder="Category" value={category} onChange={categoryHandler} />
-      <button type="submit" onClick={addClickHandler}>Add Book</button>
+    <form onSubmit={handleFormSubmit}>
+      <input type="text" placeholder="Book title" value={title} onChange={handleTitleChange} required />
+      <input type="text" placeholder="Author" value={author} onChange={handleAuthorChange} required />
+      <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+        <option value="" disabled>Select a category</option>
+        {categories.map((category) => (
+          <option key={category} value={category}>{category}</option>
+        ))}
+      </select>
+      <button type="submit">Add Book</button>
     </form>
   );
 };
