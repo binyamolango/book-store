@@ -3,25 +3,25 @@ import axios from 'axios';
 
 const baseApiUrl = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xSNrWszb8M7Mv3sIcXfM/';
 
-const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
-  const response = await axios.get(`${baseApiUrl}books`);
-  return response.data;
-});
+const fetchBooks = createAsyncThunk('books/fetchBooks', () => (axios
+  .get(`${baseApiUrl}books`)
+  .then((response) => response.data)
+));
 
-const addBook = createAsyncThunk('books/addBook', async (book) => {
-  const response = await axios.post(`${baseApiUrl}books`, book);
-  return response.data === 'Created' ? book : null;
-});
+const addBook = createAsyncThunk('books/addBook', (book) => (axios
+  .post(`${baseApiUrl}books`, book)
+  .then((response) => (response.data === 'Created' ? book : null))
+));
 
-const deleteBook = createAsyncThunk('books/deleteBook', async (ITEM_ID) => {
-  const response = await axios.delete(`${baseApiUrl}books/${ITEM_ID}`);
-  return response.data === 'The book was deleted successfully!' ? ITEM_ID : null;
-});
+const deleteBook = createAsyncThunk('books/deleteBook', (ITEM_ID) => (axios
+  .delete(`${baseApiUrl}books/${ITEM_ID}`)
+  .then((response) => (response.data === 'The book was deleted successfully!' ? ITEM_ID : null))
+));
 
 const initialState = {
   books: [],
   error: '',
-  loading: 'idle',
+  status: 'idle',
 };
 
 export const booksSlice = createSlice({
@@ -35,19 +35,13 @@ export const booksSlice = createSlice({
       })
       .addCase(fetchBooks.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        const books = Object.keys(action.payload).map((bookId) => ({
-          item_id: bookId,
-          ...action.payload[bookId][0],
-        }));
-        state.books = books;
-        state.error = books.length === 0 ? 'No result was found!' : '';
+        state.books = action.payload;
+        state.error = action.payload.length === 0 ? 'No result was found!' : '';
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      });
-
-    builder
+      })
       .addCase(addBook.pending, (state) => {
         state.status = 'loading';
       })
@@ -64,9 +58,7 @@ export const booksSlice = createSlice({
       .addCase(addBook.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      });
-
-    builder
+      })
       .addCase(deleteBook.pending, (state) => {
         state.status = 'loading';
       })
@@ -74,7 +66,7 @@ export const booksSlice = createSlice({
         if (action.payload !== null) {
           state.status = 'succeeded';
           state.error = '';
-          state.books = state.books.filter((bookId) => bookId.item_id !== action.payload);
+          state.books = state.books.filter((book) => book.item_id !== action.payload);
           if (state.books.length === 0) state.error = 'No result was found!';
         } else {
           state.status = 'failed';
