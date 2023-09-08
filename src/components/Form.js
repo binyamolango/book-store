@@ -26,6 +26,9 @@ const Form = () => {
     dispatch(addBook({
       id: uuidv4(), title, author, category,
     }));
+    setTitle('');
+    setAuthor('');
+    setCategory('');
   };
 
   return (
