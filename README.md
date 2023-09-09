@@ -39,7 +39,7 @@
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Built with React.
+Built with React.
 
 <details>
   <summary>Client</summary>
@@ -61,7 +61,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Will be available soon.
+Will be available soon.
 
 <!-- - [Live Demo Link](https://google.com) -->
 
