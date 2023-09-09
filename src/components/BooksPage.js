@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchBooks } from '../redux/books/booksSlice';
 import Books from './Books';
 import Form from './Form';
+import styles from './BooksPage.module.css';
 
 const BooksPage = () => {
   const books = useSelector((state) => state.books.books);
@@ -14,16 +15,18 @@ const BooksPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="books-display">
-      <ul className="books">
+    <div className={styles.container}>
+      <ul style={{ listStyle: 'none' }}>
         {books.map((book) => (
-          <Books
-            key={book.item_id}
-            id={book.item_id}
-            title={book.title}
-            author={book.author}
-            category={book.category}
-          />
+          <li key={book.item_id}>
+            <Books
+              key={book.item_id}
+              id={book.item_id}
+              title={book.title}
+              author={book.author}
+              category={book.category}
+            />
+          </li>
         ))}
       </ul>
       <Form />
