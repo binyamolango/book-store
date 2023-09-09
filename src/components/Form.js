@@ -37,17 +37,23 @@ const Form = () => {
   ];
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <input type="text" placeholder="Book title" value={title} onChange={handleTitleChange} className={style.inputs} required />
-      <input type="text" placeholder="Author" value={author} onChange={handleAuthorChange} className={style.inputs} required />
-      <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-        <option value="" disabled>Select a category</option>
-        {categories.map((category) => (
-          <option key={category} value={category}>{category}</option>
-        ))}
-      </select>
-      <button type="submit" className={style.submit_btn}>ADD BOOK</button>
-    </form>
+    <>
+      <hr />
+      <section>
+        <h2>ADD NEW BOOK</h2>
+        <form onSubmit={handleFormSubmit}>
+          <input type="text" placeholder="Book title" value={title} onChange={handleTitleChange} className={style.inputs} required />
+          <input type="text" placeholder="Author" value={author} onChange={handleAuthorChange} className={style.inputs} required />
+          <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+            <option value="" disabled>Select a category</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+          <button type="submit" className={style.submit_btn}>ADD BOOK</button>
+        </form>
+      </section>
+    </>
   );
 };
 
