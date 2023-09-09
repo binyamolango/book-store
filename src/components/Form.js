@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../redux/books/booksSlice';
+import style from './Form.module.css';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -36,17 +37,23 @@ const Form = () => {
   ];
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <input type="text" placeholder="Book title" value={title} onChange={handleTitleChange} required />
-      <input type="text" placeholder="Author" value={author} onChange={handleAuthorChange} required />
-      <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-        <option value="" disabled>Select a category</option>
-        {categories.map((category) => (
-          <option key={category} value={category}>{category}</option>
-        ))}
-      </select>
-      <button type="submit">Add Book</button>
-    </form>
+    <>
+      <hr />
+      <section>
+        <h2>ADD NEW BOOK</h2>
+        <form onSubmit={handleFormSubmit}>
+          <input type="text" placeholder="Book title" value={title} onChange={handleTitleChange} className={style.inputs} required />
+          <input type="text" placeholder="Author" value={author} onChange={handleAuthorChange} className={style.inputs} required />
+          <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+            <option value="" disabled>Select a category</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+          <button type="submit" className={style.submit_btn}>ADD BOOK</button>
+        </form>
+      </section>
+    </>
   );
 };
 
