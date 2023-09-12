@@ -62,7 +62,7 @@ Built with React.
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-Will be available soon.
+[https://book-store-gumo.onrender.com](https://book-store-gumo.onrender.com)
 
 <!-- - [Live Demo Link](https://google.com) -->
 
