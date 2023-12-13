@@ -62,7 +62,7 @@ Built with React.
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-[https://book-store-gumo.onrender.com](https://book-store-gumo.onrender.com)
+https://book-store-by.netlify.app/
 
 <!-- - [Live Demo Link](https://google.com) -->
 
