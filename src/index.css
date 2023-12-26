@@ -18,3 +18,7 @@
 body {
   font-family: var(--montserrat);
 }
+
+.app {
+  max-width: 1080px;
+}
