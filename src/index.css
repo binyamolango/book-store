@@ -19,6 +19,8 @@ body {
   font-family: var(--montserrat);
 }
 
-.app {
+.App {
+  width: 90%;
+  margin: 0 auto;
   max-width: 1080px;
 }
